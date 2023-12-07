@@ -1,0 +1,104 @@
+ip link set dev tap1 up
+ip route add dev tap1 10.0.0.0/24
+ip address add dev tap1 local 10.0.0.5
+Network Device Initalized
+-------------------------
+IP Address: 10.0.0.4
+MAC Address: 00:0c:29:6d:50:25
+CLOSING THREADS
+RES:90, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:54, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:90, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:127, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:127, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:54, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:86, BUFF:33ÿÀ„=*¬ZÀ„=†Ý`
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:127, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:115, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:90, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:70, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:90, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:90, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:210, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:190, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:115, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:42, BUFF:ÿÿÿÿÿÿ*¬ZÀ„=
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH ARP RCV (Either an ARP Req or ARP Reply)
+WRITING 
+RES:210, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:190, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:210, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:190, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:110, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:178, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:198, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:42, BUFF:ÿÿÿÿÿÿ*¬ZÀ„=
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH ARP RCV (Either an ARP Req or ARP Reply)
+WRITING 
+RES:215, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:178, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:198, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+RES:42, BUFF:ÿÿÿÿÿÿ*¬ZÀ„=
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH ARP RCV (Either an ARP Req or ARP Reply)
+WRITING 
+RES:115, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:215, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:215, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:178, BUFF:
+ <<< ---- PACKETS COMING TO US --- <<< 
+ETH IP REQ
+RES:198, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+Stopping....
+RES:70, BUFF:33
+ <<< ---- PACKETS COMING TO US --- <<< 
+CLOSED
+CLOSED

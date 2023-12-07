@@ -1,0 +1,53 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/aman/Documents/tcp-ip-impl-study/8.bsdsockets'
+mkdir -p build/
+cc  -I include -Wall -pthread -c src/main.c -o build/main.o
+mkdir -p build/apps/
+cc  -I include -Wall -pthread -c src/apps/cli.c -o build/apps/cli.o
+mkdir -p build/apps/
+cc  -I include -Wall -pthread -c src/apps/curl.c -o build/apps/curl.o
+mkdir -p build/arp/
+cc  -I include -Wall -pthread -c src/arp/arp.c -o build/arp/arp.o
+mkdir -p build/arp/
+cc  -I include -Wall -pthread -c src/arp/arp_input.c -o build/arp/arp_input.o
+mkdir -p build/arp/
+cc  -I include -Wall -pthread -c src/arp/arp_output.c -o build/arp/arp_output.o
+mkdir -p build/arp/
+cc  -I include -Wall -pthread -c src/arp/dst.c -o build/arp/dst.o
+mkdir -p build/arp/
+cc  -I include -Wall -pthread -c src/arp/route.c -o build/arp/route.o
+mkdir -p build/dev/
+cc  -I include -Wall -pthread -c src/dev/netdev.c -o build/dev/netdev.o
+mkdir -p build/dev/
+cc  -I include -Wall -pthread -c src/dev/tuntap_if.c -o build/dev/tuntap_if.o
+mkdir -p build/dns/
+cc  -I include -Wall -pthread -c src/dns/dns.c -o build/dns/dns.o
+mkdir -p build/eth/
+cc  -I include -Wall -pthread -c src/eth/eth.c -o build/eth/eth.o
+mkdir -p build/ip/
+cc  -I include -Wall -pthread -c src/ip/icmpv4.c -o build/ip/icmpv4.o
+mkdir -p build/ip/
+cc  -I include -Wall -pthread -c src/ip/ip.c -o build/ip/ip.o
+mkdir -p build/ip/
+cc  -I include -Wall -pthread -c src/ip/ip_input.c -o build/ip/ip_input.o
+mkdir -p build/ip/
+cc  -I include -Wall -pthread -c src/ip/ip_output.c -o build/ip/ip_output.o
+mkdir -p build/lib/
+cc  -I include -Wall -pthread -c src/lib/signal_handlers.c -o build/lib/signal_handlers.o
+mkdir -p build/lib/
+cc  -I include -Wall -pthread -c src/lib/utils.c -o build/lib/utils.o
+mkdir -p build/socket/
+cc  -I include -Wall -pthread -c src/socket/inet.c -o build/socket/inet.o
+mkdir -p build/socket/
+cc  -I include -Wall -pthread -c src/socket/skbuff.c -o build/socket/skbuff.o
+mkdir -p build/socket/
+cc  -I include -Wall -pthread -c src/socket/sock.c -o build/socket/sock.o
+mkdir -p build/socket/
+cc  -I include -Wall -pthread -c src/socket/socket.c -o build/socket/socket.o
+mkdir -p build/tcp/
+cc  -I include -Wall -pthread -c src/tcp/tcp.c -o build/tcp/tcp.o
+mkdir -p build/tcp/
+cc  -I include -Wall -pthread -c src/tcp/tcp_output.c -o build/tcp/tcp_output.o
+cc  -I include -Wall -pthread build/main.o build/apps/cli.o build/apps/curl.o build/arp/arp.o build/arp/arp_input.o build/arp/arp_output.o build/arp/dst.o build/arp/route.o build/dev/netdev.o build/dev/tuntap_if.o build/dns/dns.o build/eth/eth.o build/ip/icmpv4.o build/ip/ip.o build/ip/ip_input.o build/ip/ip_output.o build/lib/signal_handlers.o build/lib/utils.o build/socket/inet.o build/socket/skbuff.o build/socket/sock.o build/socket/socket.o build/tcp/tcp.o build/tcp/tcp_output.o -o lvl-ip
+make: Leaving directory '/home/aman/Documents/tcp-ip-impl-study/8.bsdsockets'
+ 

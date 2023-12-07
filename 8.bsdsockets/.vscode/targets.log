@@ -1,0 +1,490 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.4.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2023 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Tue Dec  5 00:30:44 2023
+
+# Variables
+
+# environment
+MEMORY_PRESSURE_WRITE = c29tZSAyMDAwMDAgMjAwMDAwMAA=
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+NO_AT_BRIDGE = 1
+# environment
+GTK_RC_FILES = /etc/gtk/gtkrc:/home/aman/.gtkrc:/home/aman/.config/gtkrc
+# environment
+LC_NAME = en_US.UTF-8
+# environment
+LC_NUMERIC = en_US.UTF-8
+# environment
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
+# environment
+VSCODE_CWD = /home/aman
+# environment
+LC_ADDRESS = en_US.UTF-8
+# default
+MAKE_COMMAND := make
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/aman/Documents/tcp-ip-impl-study/8.bsdsockets
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+MAIL = /var/spool/mail/aman
+# environment
+OLDPWD = /home/aman
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/aman/.config/Code/CachedData/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session1
+# environment
+LANG = C
+# environment
+XAUTHORITY = /tmp/xauth_VNvmXn
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS := /usr/local/include /usr/include
+# environment
+MEMORY_PRESSURE_WATCH = /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/background.slice/plasma-krunner.service/memory.pressure
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/aman/Documents/tcp-ip-impl-study/8.bsdsockets
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+PAM_KWALLET5_LOGIN = /run/user/1000/kwallet5.socket
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_CONFIG_DIRS = /home/aman/.config/kdedefaults:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XCURSOR_THEME = WhiteSur-cursors
+# environment
+XDG_SESSION_DESKTOP = KDE
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 18465
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+SESSION_MANAGER = local/aman:@/tmp/.ICE-unix/14429,unix/aman:/tmp/.ICE-unix/14429
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","osLocale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /home/aman/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin
+# default
+MAKEFILES := 
+# environment
+LC_MONETARY = en_US.UTF-8
+# environment
+MOTD_SHOWN = pam
+# automatic
+^F = $(notdir $^)
+# environment
+LC_TIME = en_US.UTF-8
+# makefile (from 'Makefile', line 5)
+headers = $(wildcard include/*.h) $(wildcard include/**/*.h)
+# environment
+INVOCATION_ID = 5ebd214f935f42db9cbfc633dc4ac5cf
+# environment
+LC_TELEPHONE = en_US.UTF-8
+# automatic
+?F = $(notdir $?)
+# environment
+KDE_APPLICATIONS_AS_SCOPE = 1
+# environment
+XDG_SEAT = seat0
+# environment
+XDG_CURRENT_DESKTOP = KDE
+# makefile (from 'Makefile', line 3)
+src = $(wildcard src/*.c) $(wildcard src/**/*.c)
+# automatic
++F = $(notdir $+)
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+DESKTOP_SESSION = plasma
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = KDE
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+BROWSER = firefox
+# environment
+LOGNAME = aman
+# makefile (from 'Makefile', line 1)
+CPPFLAGS = -I include -Wall -pthread
+# environment
+XDG_VTNR = 2
+# makefile
+.DEFAULT_GOAL := lvl-ip
+# environment
+SYSTEMD_EXEC_PID = 17107
+# environment
+EDITOR = nano
+# environment
+DISPLAY = :0
+# environment
+GTK_MODULES = canberra-gtk-module
+# environment
+USER = aman
+# default
+MAKE_VERSION := 4.4.1
+# environment
+KDE_SESSION_UID = 1000
+# environment
+MANAGERPID = 873
+# environment
+LC_MEASUREMENT = en_US.UTF-8
+# environment
+DEBUGINFOD_URLS = https://debuginfod.archlinux.org
+# environment
+_ = /usr/bin/make
+# environment
+LC_PAPER = en_US.UTF-8
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+JOURNAL_STREAM = 8:54066
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+GTK2_RC_FILES = /etc/gtk-2.0/gtkrc:/home/aman/.gtkrc-2.0:/home/aman/.config/gtkrc-2.0
+# environment
+HOME = /home/aman
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-481c17fb-1.84-main.sock
+# environment
+XDG_SESSION_ID = 5
+# environment
+XCURSOR_SIZE = 24
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# environment
+QT_AUTO_SCREEN_SCALE_FACTOR = 0
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+KDE_SESSION_VERSION = 5
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs notintermediate shell-export archives jobserver jobserver-fifo output-sync check-symlink guile load
+# environment
+KDE_FULL_SESSION = true
+# environment
+LC_IDENTIFICATION = en_US.UTF-8
+# makefile (from 'Makefile', line 4)
+obj = $(src:src/%.c=build/%.o)
+# variable set hash-table stats:
+# Load=112/1024=11%, Rehash=0, Collisions=8/145=6%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# src/dns (device 2050, inode 14699236): 3 files, no impossibilities.
+# include/socket (device 2050, inode 14699195): 6 files, no impossibilities.
+# src/tcp (device 2050, inode 14699224): 4 files, no impossibilities.
+# include/tcp (device 2050, inode 14699178): 3 files, no impossibilities.
+# src/apps (device 2050, inode 14699238): 4 files, no impossibilities.
+# include (device 2050, inode 14698862): 11 files, no impossibilities.
+# src/arp (device 2050, inode 14699232): 7 files, no impossibilities.
+# include/dns (device 2050, inode 14699191): 3 files, no impossibilities.
+# include/arp (device 2050, inode 14699187): 5 files, no impossibilities.
+# src (device 2050, inode 14698876): 12 files, no impossibilities.
+# include/eth (device 2050, inode 14699185): 3 files, no impossibilities.
+# . (device 2050, inode 14698763): 15 files, no impossibilities.
+# src/dev (device 2050, inode 14699228): 4 files, no impossibilities.
+# include/apps (device 2050, inode 14699193): 4 files, no impossibilities.
+# src/socket (device 2050, inode 14699240): 6 files, no impossibilities.
+# include/dev (device 2050, inode 14699183): 4 files, no impossibilities.
+# include/lib (device 2050, inode 14699181): 6 files, no impossibilities.
+# src/ip (device 2050, inode 14699234): 6 files, no impossibilities.
+# src/lib (device 2050, inode 14699226): 4 files, no impossibilities.
+# include/ip (device 2050, inode 14699189): 4 files, no impossibilities.
+# src/eth (device 2050, inode 14699230): 3 files, no impossibilities.
+
+# 117 files, no impossibilities in 21 directories.
+
+# Implicit Rules
+
+build/%.o: src/%.c include/apps/cli.h include/apps/curl.h include/arp/arp.h include/arp/dst.h include/arp/route.h include/dev/netdev.h include/dev/tuntap_if.h include/dns/dns.h include/eth/eth.h include/ip/icmpv4.h include/ip/ip.h include/lib/basic.h include/lib/signal_handlers.h include/lib/syshead.h include/lib/utils.h include/socket/inet.h include/socket/skbuff.h include/socket/sock.h include/socket/socket.h include/tcp/tcp.h
+#  recipe to execute (from 'Makefile', line 11):
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+# Files
+
+# Not a target:
+build/ip/ip.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/lib/signal_handlers.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/arp/arp.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/ip/icmpv4.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/arp/arp_input.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/eth/eth.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# makefile (from 'Makefile', line 14)
+debug: CFLAGS += -g
+debug: lvl-ip
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+ 
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=1/32=3%, Rehash=0, Collisions=0/3=0%
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  File is secondary (prerequisite of .SECONDARY).
+#  Last modified 2023-11-26 01:59:46
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 18):
+	rm -rf build/*.o lvl-ip
+	rm -rf build/*
+	rm -rf build/lib/*.
+	
+
+# Not a target:
+build/lib/utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/ip/ip_input.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/dev/tuntap_if.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/ip/ip_output.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+build/arp/arp_output.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+lvl-ip: build/main.o build/apps/cli.o build/apps/curl.o build/arp/arp.o build/arp/arp_input.o build/arp/arp_output.o build/arp/dst.o build/arp/route.o build/dev/netdev.o build/dev/tuntap_if.o build/dns/dns.o build/eth/eth.o build/ip/icmpv4.o build/ip/ip.o build/ip/ip_input.o build/ip/ip_output.o build/lib/signal_handlers.o build/lib/utils.o build/socket/inet.o build/socket/skbuff.o build/socket/sock.o build/socket/socket.o build/tcp/tcp.o build/tcp/tcp_output.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 8):
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(obj) -o lvl-ip
+
+# Not a target:
+build/apps/curl.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/arp/dst.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/socket/sock.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/tcp/tcp_output.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/dns/dns.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/dev/netdev.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/socket/skbuff.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/socket/socket.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/tcp/tcp.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/apps/cli.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/arp/route.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/socket/inet.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=31/1024=3%, Rehash=0, Collisions=3/69=4%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 140 / storage = 1661 B / avg = 11 B
+# current buf: size = 8162 B / used = 1661 B / count = 140 / avg = 11 B
+
+# strcache performance: lookups = 201 / hit rate = 30%
+# hash-table stats:
+# Load=140/8192=2%, Rehash=0, Collisions=1/201=0%
+# Finished Make data base on Tue Dec  5 00:30:44 2023
+
+ 

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e # This line tells the script to exit immediately if any command exits with a non-zero status. It's a way to ensure that the script stops on errors.
+set -u # This option causes the script to exit if an unset variable is used. It helps catch typos and errors related to variables.
+
+function teardown {
+    echo "Running teardown"
+    kill "$stack_pid"
+}
+
+trap teardown SIGHUP SIGINT SIGTERM ERR
+
+echo "Starting level-ip"
+echo
+./lvl-ip &
+stack_pid=$! # This captures the process ID (PID) of the last background process (in this case, ./lvl-ip) and stores it in the variable stack_pid. This PID is used later to terminate the program.
+
+echo "Running tests, resting awhile.."
+echo 
+sleep 5
+
+ping -c1 10.0.0.4
+
+echo
+
+arping -c1 -I tap0 10.0.0.4
+
+echo
+
+echo "Killing level-ip"
+kill $stack_pid

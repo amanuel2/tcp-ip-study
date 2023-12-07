@@ -1,0 +1,112 @@
+#include "tcp.h"
+#include "utils.h"
+
+
+#define MAX_TCP_SOCKETS 128
+
+#define  FIRST_FD 3
+
+static struct tcp_socket tcp_sockets[MAX_TCP_SOCKETS];
+
+static uint16_t generate_port() {return 12000;}
+uint32_t generate_iss() {return 1525252;}
+
+void tcp_init() {
+    init_tcp_sockets();
+}
+
+
+void tcp_input(struct netdev * dev, struct eth_hdr *hdr) {
+//   struct iphdr *iphdr = (struct iphdr*) hdr->payload;
+//   struct tcphdr* tcphdr = (struct tcphdr*) iphdr->data;
+   
+//   if(tcp_checksum(iphdr, tcphdr) != 0) {
+//       printf("TCP CHECKSUM ERR(NO MATCH)\n");
+//       return;
+//   }
+   
+  //printf("Sucessfull TCP_IN bout to TCP_OUT\n");
+  //tcp_outgoing(dev, hdr);
+    
+}
+void tcp_output(struct tcp_socket *sock, struct tcphdr *hdr) {
+    
+    struct iphdr iphdr; // (struct iphdr*) hdr->payload;
+    struct iphdr pseudo_hdr;
+    
+    memset(&iphdr, 0, sizeof(struct iphdr));
+    memset(&pseudo_hdr, 0, sizeof(struct iphdr));
+    
+
+   
+  hdr->csum = 0;
+  hdr->csum = tcp_checksum(&pseudo_hdr, hdr);
+   
+  //printf("Sucessfull TCP_OUT Bout to tunnel it to IP\n");
+  //ipv4_outgoing(dev, hdr);
+}
+
+
+
+
+//////////////////////// TCP SOCKETS ////////////////////////
+
+
+
+
+void init_tcp_sockets() {
+    // Try an upgraded CLEAR() with another param
+    memset(tcp_sockets, 0, sizeof(struct tcp_socket) * MAX_TCP_SOCKETS);
+}
+
+struct tcp_socket* alloc_tcp_socket() {
+    struct tcp_socket *sock;
+    for(int i=0; i<MAX_TCP_SOCKETS; i++) {
+        sock = &tcp_sockets[i];
+        if(sock->fd == 0) {
+            sock->fd = i+FIRST_FD;
+            sock->state = CLOSED;
+            return sock;
+        }
+    }
+    return 0;
+}
+
+void free_tcp_socket(struct tcp_socket *sock) {
+    tcp_sockets[sock->fd - FIRST_FD].fd = 0;
+}
+
+struct tcp_socket* get_tcp_socket(int sockfd) {
+    struct tcp_socket *sock = &tcp_sockets[sockfd - FIRST_FD];
+    if(sock->fd == 0) return 0;
+    return sock;
+}
+
+
+int tcp_v4_init(struct tcp_socket *sock, const struct sockaddr *addr, socklen_t addrlen) {
+    
+    /*
+        Curosity 
+        ---
+        sa_family_t sin_family: Address family (e.g., AF_INET for IPv4).
+        in_port_t sin_port: Port number (16 bits).
+        struct in_addr sin_addr: IP address (32 bits).
+        char sin_zero[8]: Padding to make the structure the same size as struct sockaddr.
+    */
+    
+    printf("Connecting socket __ to %hhu.%hhu.%hhu.%hhu\n", addr->sa_data[2], addr->sa_data[3], addr->sa_data[4], addr->sa_data[5]);
+    
+    // generating new sock (in the param)
+    sock->sport = generate_port(); 
+    sock->dport = addr->sa_data[1]; // grab the dest from addr (in the params)
+    sock->saddr = parse_ipv4_string("10.0.0.4");
+    sock->daddr = ((struct sockaddr_in *) addr)->sin_addr.s_addr;  // we just added a new field to a tcp socket (ip 😘)
+    
+
+    
+    return tcp_connect(sock);
+}
+
+
+////////////////////////////////////////////////////////////
+
