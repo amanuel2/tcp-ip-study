@@ -1,0 +1,297 @@
+./README.md:# Level-IP
+./README.md:Level-IP is a Linux userspace TCP/IP stack, implemented with TUN/TAP devices.
+./README.md:- Part 1, Ethernet & ARP: http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp
+./README.md:- Part 2, IPv4 & ICMPv4: http://www.saminiir.com/lets-code-tcp-ip-stack-2-ipv4-icmpv4
+./Makefile:CPPFLAGS = -I include -Wall -pthread
+./Makefile:lvl-ip: $(obj)
+./Makefile:	$(CC) $(CFLAGS) $(CPPFLAGS) $(obj) -o lvl-ip
+./Makefile:	mkdir -p $(dir $@)
+./Makefile:	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+./Makefile:debug: CFLAGS+= -g
+./Makefile:debug: lvl-ip
+./Makefile:	rm -rf build/*.o lvl-ip
+./Makefile:	rm -rf build/lib/*.o
+./src/socket/socket.c:    return sock->fd;
+./src/socket/skbuff.c:    skb->data = malloc(size);
+./src/socket/skbuff.c:    memset(skb->data, 0, size);
+./src/socket/skbuff.c:    skb->head = skb->data;
+./src/socket/skbuff.c:    skb->tail = skb->data;
+./src/socket/skbuff.c:    skb->end = skb->tail+size;
+./src/socket/skbuff.c:    skb->data -= len;
+./src/socket/skbuff.c:    skb->tail += len;
+./src/socket/skbuff.c:    return skb->data;
+./src/socket/skbuff.c:    skb->data += len;
+./src/socket/skbuff.c:    skb->tail += len;
+./src/socket/skbuff.c:    return skb->data;
+./src/socket/skbuff.c:    skb->dst = dst;
+./src/socket/skbuff.c:    printf("Protocol: 0x%x\n", skb->protocol);
+./src/socket/skbuff.c:    printf("Size: %u\n", skb->size);
+./src/socket/skbuff.c:    if (skb->dst && skb->dst->dev) {
+./src/socket/skbuff.c:        struct netdev *dev = skb->dst->dev;
+./src/socket/skbuff.c:    inet_ntop(AF_INET, &dev->addr, str_addr, INET_ADDRSTRLEN);
+./src/socket/skbuff.c:            printf("%02x", dev->hwaddr[i]);
+./src/socket/skbuff.c:        printf("Dev tundev: %s\n", dev->tundev);
+./src/socket/skbuff.c:        printf("skb->dst or skb->dst->dev is NULL\n");
+./src/socket/skbuff.c:    printf("Data pointer: %p\n", (void *)skb->data);
+./src/socket/skbuff.c:    printf("Head pointer: %p\n", (void *)skb->head);
+./src/socket/skbuff.c:    printf("Tail pointer: %p\n", (void *)skb->tail);
+./src/socket/skbuff.c:    printf("End pointer: %p\n", (void *)skb->end);
+./src/socket/skbuff.c:    for (uint8_t *ptr = skb->head; ptr < skb->tail; ptr++) {
+./src/socket/skbuff.c:    for (uint8_t *ptr = skb->head; ptr < skb->tail; ptr++) {
+./src/main.c:    if(pthread_create(&threads[1], NULL, cmd_to_run->cmd_func, cmd_to_run) != 0) {
+./src/tcp/tcp.c://   struct iphdr *iphdr = (struct iphdr*) hdr->payload;
+./src/tcp/tcp.c://   struct tcphdr* tcphdr = (struct tcphdr*) iphdr->data;
+./src/tcp/tcp.c://     struct iphdr iphdr; // (struct iphdr*) hdr->payload;
+./src/tcp/tcp.c://   hdr->csum = 0;
+./src/tcp/tcp.c://   hdr->csum = tcp_v4_checksum(&pseudo_hdr, hdr);
+./src/tcp/tcp.c:        if(sock->fd == 0) {
+./src/tcp/tcp.c:            sock->fd = i+FIRST_FD;
+./src/tcp/tcp.c:            sock->state = CLOSED;
+./src/tcp/tcp.c:    tcp_sockets[sock->fd - FIRST_FD].fd = 0;
+./src/tcp/tcp.c:    struct tcp_socket *sock = &tcp_sockets[sockfd - FIRST_FD];
+./src/tcp/tcp.c:    if(sock->fd == 0) return 0;
+./src/tcp/tcp.c:        ---
+./src/tcp/tcp.c:    sock->sport = generate_port(); 
+./src/tcp/tcp.c:    sock->dport = addr->sa_data[1]; // grab the dest from addr (in the params)
+./src/tcp/tcp.c:    sock->saddr = parse_ipv4_string("10.0.0.4");
+./src/tcp/tcp.c:    sock->daddr = ((struct sockaddr_in *) addr)->sin_addr.s_addr;  // we just added a new field to a tcp socket (ip 😘)
+./src/tcp/tcp.c:printf("Connecting socket to %hhu.%hhu.%hhu.%hhu:%d\n", addr->sa_data[2], addr->sa_data[3], addr->sa_data[4], addr->sa_data[5], addr->sa_data[1]);
+./src/tcp/tcp_output.c:       ----
+./src/tcp/tcp_output.c:       ---
+./src/tcp/tcp_output.c:       ---
+./src/tcp/tcp_output.c:    struct tcphdr *tcphdr = (struct tcphdr *) buff->data;
+./src/tcp/tcp_output.c:    struct tcb *tcb = &sock->tcb;
+./src/tcp/tcp_output.c:    skb_push(sock, sock->hln);
+./src/tcp/tcp_output.c:    tcphdr->sport = htons(sock->sport);
+./src/tcp/tcp_output.c:    tcphdr->dport = htons(sock->dport);
+./src/tcp/tcp_output.c:    tcphdr->seq = htonl(sock->tcb.snd_nxt);
+./src/tcp/tcp_output.c:    tcphdr->ack_seq = htonl(sock->tcb.rcv_nxt);    
+./src/tcp/tcp_output.c:    tcphdr->rsvd = 0;
+./src/tcp/tcp_output.c:    tcphdr->hl = 5;
+./src/tcp/tcp_output.c:    tcphdr->flags = tcb->tcp_flags;
+./src/tcp/tcp_output.c:    tcphdr->win = htons(sock->tcb.rcv_wnd);
+./src/tcp/tcp_output.c:    tcphdr->urp = 0;
+./src/tcp/tcp_output.c:    tcphdr->csum = tcp_v4_checksum(buff, htonl(sock->saddr), htonl(sock->daddr)); // last no htonl for some reason
+./src/tcp/tcp_output.c:    if(sock->state != CLOSED && sock->state != LISTEN) {
+./src/tcp/tcp_output.c:    sock->state = SYN_SENT;
+./src/tcp/tcp_output.c:    sock->tcb.tcp_flags = TCP_SYN;
+./src/tcp/tcp_output.c:    sock->hln = sizeof(struct tcphdr);
+./src/tcp/tcp_output.c:    sock->tcb.iss = generate_iss();
+./src/tcp/tcp_output.c:    sock->tcb.snd_wnd = 0;
+./src/tcp/tcp_output.c:    sock->tcb.snd_wl1 = 0;
+./src/tcp/tcp_output.c:    sock->tcb.snd_una = sock->tcb.iss;
+./src/tcp/tcp_output.c:    sock->tcb.snd_up  = sock->tcb.iss;
+./src/tcp/tcp_output.c:    sock->tcb.snd_nxt = sock->tcb.iss; 
+./src/tcp/tcp_output.c:    sock->tcb.rcv_nxt = 0;
+./src/tcp/tcp_output.c:    tcp_select_initial_window(&sock->tcb.rcv_wnd);
+./src/apps/cli.c:// 0 -> core networking
+./src/apps/cli.c:// 1 -> integrated apps
+./src/apps/cli.c:    printf("Usage: sudo %s [command ARGS..]\n\n", cmd->argv[0]);
+./src/apps/cli.c:    printf("  curl HOST - act like curl, HOST as the target.\n");
+./src/apps/cli.c:    for(cmd = &cmds[0]; cmd->cmd_func; cmd++) {
+./src/apps/cli.c:        printf("INITALIZING Command %s\n", cmd->cmd_str);
+./src/apps/cli.c:        if(strncmp(argv[1], cmd->cmd_str, 6) == 0) {
+./src/apps/cli.c:            cmd->argc = argc - 2; // dont include filename+command_name
+./src/apps/cli.c:            cmd->argv = &argv[2];
+./src/apps/cli.c:            if(cmd->argc != cmd->args) break;
+./src/apps/curl.c:	if (cmd->argc != 1 || strnlen(cmd->argv[0], MAX_HOSTNAME) == MAX_HOSTNAME) {
+./src/apps/curl.c:    if(get_address(cmd->argv[0], &addr) != 0)	 {
+./src/eth/eth.c:    hdr->ethertype = htons(hdr->ethertype);
+./src/eth/eth.c:    switch (hdr->ethertype) {
+./src/eth/eth.c:            printf("Unrecognized ethertype %x\n", hdr->ethertype);
+./src/lib/utils.c:        count -= 2;
+./src/lib/utils.c:    /*  Add left-over byte, if any */
+./src/lib/utils.c:    /*  Fold 32-bit sum to 16 bits */
+./src/lib/utils.c:    return tcp_udp_checksum(saddr, daddr, IP_TCP, skb->data, skb->size);
+./src/lib/utils.c:    for(head=servinfo; head!=0; head = head->ai_next) {
+./src/lib/utils.c:        *addr = *head->ai_addr;
+./src/arp/arp.c:    arph = (struct arp_hdr *) skb->data;
+./src/arp/arp.c:    //skb->dev = dev;
+./src/arp/arp.c:    skb->protocol = htons(ETH_P_ARP);
+./src/arp/arp.c:    arph->hwtype = ARP_ETHERNET;
+./src/arp/arp.c:    arph->protype = ETH_P_IP;
+./src/arp/arp.c:    arph->hwsize = dev->addr_len;
+./src/arp/arp.c:    arph->prosize = 4; // IPv4
+./src/arp/arp.c:    payload = (struct arp_ipv4 *) arph->data;
+./src/arp/arp.c:    memcpy(payload->smac, src_hw, dev->addr_len);
+./src/arp/arp.c:    memcpy(payload->dmac, dst_hw, dev->addr_len);
+./src/arp/arp.c:    payload->sip = src_ip;
+./src/arp/arp.c:    payload->dip = dest_ip;
+./src/arp/arp.c:        if (entry->state == ARP_FREE) {
+./src/arp/arp.c:            entry->state = ARP_RESOLVED;
+./src/arp/arp.c:            entry->hwtype = hdr->hwtype;
+./src/arp/arp.c:            entry->sip = data->sip;
+./src/arp/arp.c:            memcpy(entry->smac, data->smac, sizeof(entry->smac));
+./src/arp/arp.c:    return -1;
+./src/arp/arp.c:        if (entry->state == ARP_FREE) continue;
+./src/arp/arp.c:        if (entry->hwtype == hdr->hwtype && entry->sip == data->sip) {
+./src/arp/arp.c:            memcpy(entry->smac, data->smac, 6);
+./src/arp/arp.c:    arphdr = (struct arp_hdr *) hdr->payload;
+./src/arp/arp.c:    arphdr->hwtype = ntohs(arphdr->hwtype);
+./src/arp/arp.c:    arphdr->protype = ntohs(arphdr->protype);
+./src/arp/arp.c:    arphdr->opcode = ntohs(arphdr->opcode);
+./src/arp/arp.c:    if (arphdr->hwtype != ARP_ETHERNET) {
+./src/arp/arp.c:    if (arphdr->protype != ARP_IPV4) {
+./src/arp/arp.c:    arpdata = (struct arp_ipv4 *) arphdr->data;
+./src/arp/arp.c:    if (netdev->addr != arpdata->dip) {
+./src/arp/arp.c:        //netdev->addr = htonl(netdev->addr);
+./src/arp/arp.c:        inet_ntop(AF_INET, &netdev->addr, str, 30);
+./src/arp/arp.c:        //arpdata->dip = htonl(arpdata->dip);
+./src/arp/arp.c:        inet_ntop(AF_INET, &arpdata->dip, str2, 30);
+./src/arp/arp.c:    switch (arphdr->opcode) {
+./src/arp/arp.c:    arpdata = (struct arp_ipv4 *) arphdr->data;
+./src/arp/arp.c:    memcpy(arpdata->dmac, arpdata->smac, 6);
+./src/arp/arp.c:    arpdata->dip = arpdata->sip;
+./src/arp/arp.c:    memcpy(arpdata->smac, netdev->hwaddr, 6);
+./src/arp/arp.c:    arpdata->sip = netdev->addr;
+./src/arp/arp.c:    arphdr->opcode = ARP_REPLY;
+./src/arp/arp.c:    arphdr->opcode = htons(arphdr->opcode);
+./src/arp/arp.c:    arphdr->hwtype = htons(arphdr->hwtype);
+./src/arp/arp.c:    arphdr->protype = htons(arphdr->protype);
+./src/arp/arp.c:    netdev_transmit(netdev, hdr, ETH_P_ARP, len, arpdata->dmac);
+./src/arp/arp.c:        if (entry->state == ARP_RESOLVED && 
+./src/arp/arp.c:            entry->sip == *sip) {
+./src/arp/arp.c:            return entry->smac;
+./src/arp/arp.c:    return sizeof(struct arp_hdr) + (dev2->addr_len+sizeof(uint32_t)*2);
+./src/ip/icmpv4.c:    struct iphdr *iphdr = (struct iphdr *) hdr->payload;
+./src/ip/icmpv4.c:    struct icmp_v4 *icmp = (struct icmp_v4 *) iphdr->data;
+./src/ip/icmpv4.c:    switch (icmp->type) {
+./src/ip/icmpv4.c:                  "check your routes and firewall rules\n", icmp->code);
+./src/ip/icmpv4.c:    struct iphdr *iphdr = (struct iphdr *) hdr->payload;
+./src/ip/icmpv4.c:    struct icmp_v4 *icmp = (struct icmp_v4 *) iphdr->data;
+./src/ip/icmpv4.c:    uint16_t icmp_len = iphdr->len - (iphdr->ihl * 4);
+./src/ip/icmpv4.c:    icmp->type = ICMP_V4_REPLY;
+./src/ip/icmpv4.c:    icmp->csum = 0;
+./src/ip/icmpv4.c:    icmp->csum = checksum(icmp, icmp_len, 0);
+./src/ip/icmpv4.c:    struct icmp_v4_echo *icmp_v4_echo = (struct icmp_v4_echo*) icmp->data;
+./src/ip/icmpv4.c:    printf("ID: %hu\n", icmp_v4_echo->id);
+./src/ip/icmpv4.c:    printf("Sequence: %hu\n", icmp_v4_echo->seq);
+./src/ip/icmpv4.c:        printf("%c ", icmp_v4_echo->data[i]);
+./src/ip/ip_input.c:    struct iphdr *iphdr = (struct iphdr *) hdr->payload;
+./src/ip/ip_input.c:    uint16_t csum = -1;
+./src/ip/ip_input.c:    if (iphdr->version != IPV4) {
+./src/ip/ip_input.c:    if (iphdr->ihl < 5) {
+./src/ip/ip_input.c:    if (iphdr->ttl == 0) {
+./src/ip/ip_input.c:    csum = checksum(iphdr, iphdr->ihl * 4, 0);
+./src/ip/ip_input.c:    iphdr->len = ntohs(iphdr->len);
+./src/ip/ip_input.c:    switch (iphdr->proto) {
+./src/ip/ip_output.c:    rt = route_lookup(sock->saddr, sock->daddr);
+./src/ip/ip_output.c:    skb_dst_set(skb, &rt->dst);
+./src/ip/ip_output.c:    struct netdev *dev = skb->dst->dev;
+./src/ip/ip_output.c:    inet_ntop(AF_INET, &dev->addr, str_addr, INET_ADDRSTRLEN);
+./src/ip/ip_output.c:        printf("%02x", dev->hwaddr[i]);
+./src/ip/ip_output.c:    printf("dev addr_len: %d\n", dev->addr_len);
+./src/ip/ip_output.c:    printf("dev tundev: %s\n", dev->tundev);
+./src/ip/ip_output.c:    hdr->version = IPV4;
+./src/ip/ip_output.c:    hdr->ihl = 0x05;
+./src/ip/ip_output.c:    hdr->tos = 0;
+./src/ip/ip_output.c:    hdr->len = htons(skb->size);
+./src/ip/ip_output.c:    hdr->id = htons(555);
+./src/ip/ip_output.c:    hdr->flags = 0;
+./src/ip/ip_output.c:    hdr->flag_offset = 0;
+./src/ip/ip_output.c:    hdr->ttl = 30;
+./src/ip/ip_output.c:    hdr->proto = IP_TCP;
+./src/ip/ip_output.c:    hdr->saddr = htonl(sock->saddr);
+./src/ip/ip_output.c:    hdr->daddr = sock->daddr; 
+./src/ip/ip_output.c:    hdr->csum = 0;
+./src/ip/ip_output.c:    hdr->csum = checksum(hdr, hdr->ihl * 4, 0);
+./src/dev/netdev.c:    CLEAR(dev->buf);
+./src/dev/netdev.c:    dev->buflen = BUFLEN;
+./src/dev/netdev.c:    if (inet_pton(AF_INET, addr, &dev->addr) != 1) {
+./src/dev/netdev.c:    sscanf(hwaddr, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx", &dev->hwaddr[0],
+./src/dev/netdev.c:                                                    &dev->hwaddr[1],
+./src/dev/netdev.c:                                                    &dev->hwaddr[2],
+./src/dev/netdev.c:                                                    &dev->hwaddr[3],
+./src/dev/netdev.c:                                                    &dev->hwaddr[4],
+./src/dev/netdev.c:                                                    &dev->hwaddr[5]);
+./src/dev/netdev.c:    dev->addr_len = 6;
+./src/dev/netdev.c:    dev->tundev = malloc(10);
+./src/dev/netdev.c:    tun_init(dev->tundev, addr);
+./src/dev/netdev.c:    printf("-------------------------\n");
+./src/dev/netdev.c:    inet_ntop(AF_INET, &dev->addr, str_addr, INET_ADDRSTRLEN);
+./src/dev/netdev.c:           dev->hwaddr[0], dev->hwaddr[1], dev->hwaddr[2],
+./src/dev/netdev.c:           dev->hwaddr[3], dev->hwaddr[4], dev->hwaddr[5]);
+./src/dev/netdev.c:    hdr->ethertype = htons(ethertype);
+./src/dev/netdev.c:    memcpy(hdr->smac, dev->hwaddr, 6);
+./src/dev/netdev.c:    memcpy(hdr->dmac, dst_mac, 6);
+./src/dev/netdev.c:           hdr->dmac[0], hdr->dmac[1], hdr->dmac[2], 
+./src/dev/netdev.c:           hdr->dmac[3], hdr->dmac[4], hdr->dmac[5]);
+./src/dev/netdev.c:           hdr->smac[0], hdr->smac[1], hdr->smac[2], 
+./src/dev/netdev.c:           hdr->smac[3], hdr->smac[4], hdr->smac[5]);
+./src/dev/netdev.c:    printf("Ethertype: 0x%04x\n", ntohs(hdr->ethertype));
+./src/dev/netdev.c:    dev = skb->dst->dev;
+./src/dev/netdev.c:    struct eth_hdr *hdr = (struct eth_hdr *) skb->data;
+./src/dev/netdev.c:    memcpy(hdr->dmac, dmac, 6);
+./src/dev/netdev.c:    memcpy(hdr->smac, dev->hwaddr, 6);
+./src/dev/netdev.c:    hdr->ethertype = htons(ETH_P_IP);
+./src/dev/netdev.c:    return tun_write((char*)skb->data, skb->size);
+./src/dev/tuntap_if.c:    /* Flags: IFF_TUN   - TUN device (no Ethernet headers)
+./src/dev/tuntap_if.c:     *        IFF_TAP   - TAP device
+./src/dev/tuntap_if.c:     *        IFF_NO_PI - Do not provide packet information
+./data:src/skbuff.c:    skb->data = malloc(size);
+./data:src/skbuff.c:    memset(skb->data, 0, size);
+./data:src/skbuff.c:    skb->head = skb->data;
+./data:src/skbuff.c:    skb->tail = skb->data;
+./data:src/skbuff.c:    skb->end = skb->tail+size;
+./data:src/skbuff.c:    skb->data -= len;
+./data:src/skbuff.c:    skb->tail += len;
+./data:src/skbuff.c:    return skb->data;
+./data:src/skbuff.c:    skb->data += len;
+./data:src/skbuff.c:    skb->tail += len;
+./data:src/skbuff.c:    return skb->data;
+./data:src/skbuff.c:    skb->dst = dst;
+./data:src/utils.c:    return tcp_udp_checksum(saddr, daddr, IP_TCP, skb->data, skb->size);
+./data:src/ip_output.c:    hdr->len = htons(skb->size);
+./data:src/arp/arp.c:    arph = (struct arp_hdr *) skb->data;
+./data:src/arp/arp.c:    //skb->dev = dev;
+./data:src/arp/arp.c:    skb->protocol = htons(ETH_P_ARP);
+./data:src/dev/netdev.c:    dev = skb->dst->dev;
+./data:src/dev/netdev.c:    struct eth_hdr *hdr = (struct eth_hdr *) skb->data;
+./data:src/dev/netdev.c:    return tun_write((char*)skb->data, skb->size);
+./data:include/ipv4.h:    return (struct iphdr*) skb->data;
+./include/tcp/tcp.h:    	 ------------------------------------------------------------- 
+./include/tcp/tcp.h:    2.   SYN-SENT    --> <SEQ=100><CTL=SYN>               --> SYN-RECEIVED
+./include/tcp/tcp.h:    3.   ESTABLISHED <-- <SEQ=300><ACK=101><CTL=SYN,ACK>  <-- SYN-RECEIVED
+./include/tcp/tcp.h:    4.   ESTABLISHED --> <SEQ=101><ACK=301><CTL=ACK>       --> ESTABLISHED
+./include/tcp/tcp.h:    5.   ESTABLISHED --> <SEQ=101><ACK=301><CTL=ACK><DATA> --> ESTABLISHED
+./include/tcp/tcp.h:       -----------------------------------------------------------------
+./include/tcp/tcp.h:       -----------------------------------------------------------------
+./include/tcp/tcp.h:       -----------------------------------------------------------------
+./include/tcp/tcp.h:       -----------------------------------------------------------------
+./include/tcp/tcp.h:       -----------------------------------------------------------------
+./include/tcp/tcp.h:       |---------------------------------------------------------------|
+./include/tcp/tcp.h:       |                     Optional Data (0-40)                      |
+./include/tcp/tcp.h:       -----------------------------------------------------------------
+./include/tcp/tcp.h:      SND.UNA - send unacknowledged
+./include/tcp/tcp.h:      SND.NXT - send next
+./include/tcp/tcp.h:      SND.WND - send window
+./include/tcp/tcp.h:      SND.UP  - send urgent pointer
+./include/tcp/tcp.h:      SND.WL1 - segment sequence number used for last window update
+./include/tcp/tcp.h:      SND.WL2 - segment acknowledgment number used for last window update
+./include/tcp/tcp.h:      ISS     - initial send sequence number
+./include/tcp/tcp.h:      RCV.NXT - receive next
+./include/tcp/tcp.h:      RCV.WND - receive window
+./include/tcp/tcp.h:      RCV.UP  - receive urgent pointer
+./include/tcp/tcp.h:      IRS     - initial receive sequence number
+./include/tcp/tcp.h:      SEG.SEQ - segment sequence number
+./include/tcp/tcp.h:      SEG.ACK - segment acknowledgment number
+./include/tcp/tcp.h:      SEG.LEN - segment length
+./include/tcp/tcp.h:      SEG.WND - segment window
+./include/tcp/tcp.h:      SEG.UP  - segment urgent pointer
+./include/tcp/tcp.h:      SEG.PRC - segment precedence value
+./include/ip/ipv4.h:   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+./include/ip/ipv4.h:   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+./include/ip/ipv4.h:   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+./include/ip/ipv4.h:   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+./include/ip/ipv4.h:   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+./include/ip/ipv4.h:   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+./include/ip/ipv4.h:   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+./include/ip/ipv4.h:    return (struct iphdr*) skb->data;
+./tests/tests1:set -e # This line tells the script to exit immediately if any command exits with a non-zero status. It's a way to ensure that the script stops on errors.
+./tests/tests1:set -u # This option causes the script to exit if an unset variable is used. It helps catch typos and errors related to variables.
+./tests/tests1:echo "Starting level-ip"
+./tests/tests1:./lvl-ip &
+./tests/tests1:stack_pid=$! # This captures the process ID (PID) of the last background process (in this case, ./lvl-ip) and stores it in the variable stack_pid. This PID is used later to terminate the program.
+./tests/tests1:ping -c1 10.0.0.4
+./tests/tests1:arping -c1 -I tap0 10.0.0.4
+./tests/tests1:echo "Killing level-ip"
